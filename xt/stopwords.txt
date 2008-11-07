@@ -1,0 +1,13 @@
+CPAN
+CTRL
+DAGOLDEN
+Foo
+MSWin
+README
+STDERR
+STDOUT
+XS
+html
+minicpan
+minicpanrc
+visitcpan

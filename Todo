@@ -1,0 +1,12 @@
+#--------------------------------------------------------------------------#
+# TODO for App-CPAN-Mini-Visit
+#--------------------------------------------------------------------------#
+
+- Decide on usage.  E.g.
+  
+  $ visitcpan [OPTIONS] program
+
+  $ visitcpan [OPTIONS] -- program program-opts
+
+- Filtering
+  - -f "regex" matched against AUTHOR/DistName-version.suffix
