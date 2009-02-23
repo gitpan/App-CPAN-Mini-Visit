@@ -1,4 +1,4 @@
-# Copyright (c) 2008 by David Golden. All rights reserved.
+# Copyright (c) 2008-2009 by David Golden. All rights reserved.
 # Licensed under Apache License, Version 2.0 (the "License").
 # You may not use this file except in compliance with the License.
 # A copy of the License was distributed with this file or you may obtain a 
@@ -9,9 +9,11 @@ use 5.010;
 use strict;
 use warnings;
 
-use version; our $VERSION = qv("v0.3.1");
+our $VERSION = '0.004';
+$VERSION = eval $VERSION; ## no critic
 
 use CPAN::Mini ();
+use Capture::Tiny qw/capture/;
 use Exception::Class::TryCatch qw/ try catch /;
 use File::Basename qw/ basename /;
 use File::Find qw/ find /;
@@ -27,7 +29,9 @@ my @option_spec = (
   Switch("version|V"),
   Switch("quiet|q"),
   Param("append|a", qr/(?:^$|(?:^path|dist$))/ )->default(''),
+  Param("e|E"),
   Param("minicpan|m"),
+  Param("output|o"),
 );
 
 sub run {
@@ -49,11 +53,15 @@ sub run {
   return _exit_version() if $opt->get_version;
 
   # Set Archive::Extract globals
+  # if quiet suppress warnings from Archive::Tar, etc.
   local $Archive::Extract::DEBUG = 0;
   local $Archive::Extract::PREFER_BIN = 1;
   local $Archive::Extract::WARN = $opt->get_quiet ? 0 : 1;
 
-  # if quiet suppress warnings from Archive::Tar, etc.
+  # if -e/-E, then prepend to command
+  if ( $opt->get_e ) {
+    unshift @args, $^X, '-E', $opt->get_e;
+  }
 
   # locate minicpan directory
   if ( ! $opt->get_minicpan ) {
@@ -75,11 +83,19 @@ sub run {
 
   my $minicpan = dir( $opt->get_minicpan )->absolute;
   
+  # save output by redirecting STDOUT if requested
+  my ($out_fh, $orig_stdout );
+  if ( $opt->get_output ) {
+    open $out_fh, ">", $opt->get_output;
+    open $orig_stdout, "<&=STDOUT";
+    open STDOUT, ">&=" . fileno $out_fh;
+  }
+
   find( 
     {
       no_chdir => 1,
       follow => 0,
-      preprocess => sub { return sort @_ },
+      preprocess => sub { my @files = sort @_; return @files },
       wanted => sub {
         return unless /$archive_re/;
         # run code if program/args given otherwise print name
@@ -106,6 +122,12 @@ sub run {
     },
     $minicpan
   );
+
+  # restore STDOUT and close output file
+  if ( $opt->get_output ) {
+    open STDOUT, ">&=" . fileno $orig_stdout;
+    close $out_fh;
+  }
 
   return 0; # exit code
 }
@@ -139,10 +161,14 @@ Options:
  --append|-a        --append=dist -> append distname after ARGS
                     --append=path -> append tarball path after ARGS
 
+ -e|-E              run next argument via 'perl -E'
+ 
  --help|-h          this usage info 
 
  --minicpan|-m      directory of a minicpan (defaults to local minicpan 
                     from CPAN::Mini config file)
+
+ --output|-o        file to save output instead of sending to terminal
 
  --quiet|-q         silence warnings and suppress STDERR from tar
 
@@ -256,7 +282,7 @@ David A. Golden (DAGOLDEN)
 
 = COPYRIGHT AND LICENSE
 
-Copyright (c) 2008 by David A. Golden. All rights reserved.
+Copyright (c) 2008-2009 by David A. Golden. All rights reserved.
 
 Licensed under Apache License, Version 2.0 (the "License").
 You may not use this file except in compliance with the License.
