@@ -1,40 +1,56 @@
 ---
-name: App-CPAN-Mini-Visit
-version: 0.006
+abstract: 'explore each distribution in a minicpan repository'
 author:
   - 'David Golden <dagolden@cpan.org>'
-abstract: explore each distribution in a minicpan repository
-license: apache
-resources:
-  license: http://www.apache.org/licenses/LICENSE-2.0.txt
 build_requires:
-  File::Temp: 0.2
-  IO::CaptureOutput: 1.0801
-  IO::File: 0
-  Test::More: 0.62
-requires:
-  Archive::Extract: 0.28
-  CPAN::Mini: 0.572
-  Exception::Class::TryCatch: 1.12
-  File::Basename: 0
-  File::Find: 0
-  File::pushd: 1
-  Getopt::Lucid: 0.16
-  Path::Class: 0.16
-  Pod::Usage: 1.35
-  perl: 5.01
+  CPAN::Checksums: '0'
+  ExtUtils::MakeMaker: '0'
+  File::Spec::Functions: '0'
+  File::Temp: '0.20'
+  IO::CaptureOutput: '1.0801'
+  IO::File: '0'
+  List::Util: '0'
+  Test::More: '0.62'
+  version: '0'
 configure_requires:
-  Module::Build: 0.35
+  ExtUtils::MakeMaker: '6.17'
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 5.013, CPAN::Meta::Converter version 2.133380'
+license: apache
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: '1.4'
+name: App-CPAN-Mini-Visit
+no_index:
+  directory:
+    - t
+    - xt
+    - examples
+    - corpus
+  package:
+    - DB
 provides:
   App::CPAN::Mini::Visit:
     file: lib/App/CPAN/Mini/Visit.pm
-    version: 0.006
-generated_by: Module::Build version 0.3502
-meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
-no_index:
-  directory:
-    - examples
-    - inc
-    - t
+    version: '0.007'
+requires:
+  Archive::Extract: '0.28'
+  CPAN::Mini: '0.572'
+  Exception::Class::TryCatch: '1.12'
+  File::Basename: '0'
+  File::Find: '0'
+  File::pushd: '0'
+  Getopt::Lucid: '0.16'
+  Path::Class: '0'
+  Pod::Usage: '1.35'
+  perl: '5.006'
+  strict: '0'
+  warnings: '0'
+resources:
+  bugtracker: https://github.com/dagolden/app-cpan-mini-visit/issues
+  homepage: https://github.com/dagolden/app-cpan-mini-visit
+  repository: https://github.com/dagolden/app-cpan-mini-visit.git
+version: '0.007'
+x_authority: cpan:DAGOLDEN
+x_contributors:
+  - 'Ricardo Signes <rjbs@cpan.org>'
