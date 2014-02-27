@@ -32,7 +32,7 @@ no_index:
 provides:
   App::CPAN::Mini::Visit:
     file: lib/App/CPAN/Mini/Visit.pm
-    version: '0.007'
+    version: '0.008'
 requires:
   Archive::Extract: '0.28'
   CPAN::Mini: '0.572'
@@ -47,10 +47,10 @@ requires:
   strict: '0'
   warnings: '0'
 resources:
-  bugtracker: https://github.com/dagolden/app-cpan-mini-visit/issues
-  homepage: https://github.com/dagolden/app-cpan-mini-visit
-  repository: https://github.com/dagolden/app-cpan-mini-visit.git
-version: '0.007'
+  bugtracker: https://github.com/dagolden/App-CPAN-Mini-Visit/issues
+  homepage: https://github.com/dagolden/App-CPAN-Mini-Visit
+  repository: https://github.com/dagolden/App-CPAN-Mini-Visit.git
+version: '0.008'
 x_authority: cpan:DAGOLDEN
 x_contributors:
   - 'Ricardo Signes <rjbs@cpan.org>'

@@ -4,7 +4,7 @@ use warnings;
 
 package App::CPAN::Mini::Visit;
 # ABSTRACT: explore each distribution in a minicpan repository
-our $VERSION = '0.007'; # VERSION
+our $VERSION = '0.008'; # VERSION
 
 use CPAN::Mini 0.572 ();
 use Exception::Class::TryCatch 1.12 qw/ try catch /;
@@ -238,7 +238,7 @@ App::CPAN::Mini::Visit - explore each distribution in a minicpan repository
 
 =head1 VERSION
 
-version 0.007
+version 0.008
 
 =head1 SYNOPSIS
 
@@ -277,7 +277,7 @@ L<CPAN::Mini>
 =head2 Bugs / Feature Requests
 
 Please report any bugs or feature requests through the issue tracker
-at L<https://github.com/dagolden/app-cpan-mini-visit/issues>.
+at L<https://github.com/dagolden/App-CPAN-Mini-Visit/issues>.
 You will be notified automatically of any progress on your issue.
 
 =head2 Source Code
@@ -285,9 +285,9 @@ You will be notified automatically of any progress on your issue.
 This is open source software.  The code repository is available for
 public review and contribution under the terms of the license.
 
-L<https://github.com/dagolden/app-cpan-mini-visit>
+L<https://github.com/dagolden/App-CPAN-Mini-Visit>
 
-  git clone https://github.com/dagolden/app-cpan-mini-visit.git
+  git clone https://github.com/dagolden/App-CPAN-Mini-Visit.git
 
 =head1 AUTHOR
 

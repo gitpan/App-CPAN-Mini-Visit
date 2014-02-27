@@ -3,7 +3,7 @@ NAME
     repository
 
 VERSION
-    version 0.007
+    version 0.008
 
 SYNOPSIS
         #!/usr/bin/perl
@@ -28,16 +28,16 @@ SEE ALSO
 SUPPORT
   Bugs / Feature Requests
     Please report any bugs or feature requests through the issue tracker at
-    <https://github.com/dagolden/app-cpan-mini-visit/issues>. You will be
+    <https://github.com/dagolden/App-CPAN-Mini-Visit/issues>. You will be
     notified automatically of any progress on your issue.
 
   Source Code
     This is open source software. The code repository is available for
     public review and contribution under the terms of the license.
 
-    <https://github.com/dagolden/app-cpan-mini-visit>
+    <https://github.com/dagolden/App-CPAN-Mini-Visit>
 
-      git clone https://github.com/dagolden/app-cpan-mini-visit.git
+      git clone https://github.com/dagolden/App-CPAN-Mini-Visit.git
 
 AUTHOR
     David Golden <dagolden@cpan.org>
